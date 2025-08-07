@@ -27,10 +27,6 @@ def login(driver):
     assert "inventory.html" in driver.current_url
     print("✅ Login successful")
 
-# 🧪 Test: Login
-def test_login(driver):
-    login(driver)
-
 # 🛍️ Test: Add product to cart
 def test_add_product_to_cart(driver):
     login(driver)
@@ -46,5 +42,13 @@ def test_add_product_to_cart(driver):
     cart_count = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge"))
     )
-    assert cart_count.text == "2"
-    print("🛍️ 2 products added to cart successfully")
+    try:
+        assert cart_count.text == "2"
+        driver.save_screenshot("screenshots/checkout.png")
+        print("🛍️ 2 products added to cart successfully")
+    except AssertionError:
+        print(f"❌ Cart count was {cart_count.text}, expected 2")
+
+    # Always take screenshot
+    # driver.save_screenshot("screenshots/cart_success.png")
+

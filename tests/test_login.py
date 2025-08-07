@@ -24,7 +24,9 @@ password.send_keys("secret_sauce")
 login_button.click()
 
 # Verify successful login by checking page title or URL
-wait.until(EC.url_contains("inventory.html"))
+# wait.until(EC.url_contains())
+WebDriverWait(driver, 10).until(EC.url_contains("inventory.html"))
+driver.save_screenshot("screenshots/login.png")
 print("Login successful. Current URL:", driver.current_url)
 
 driver.quit()

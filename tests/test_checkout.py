@@ -37,4 +37,5 @@ def test_checkout(driver):
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "complete-header")))
     success_message = driver.find_element(By.CLASS_NAME, "complete-header").text
     assert success_message == "Thank you for your order!"
+    driver.save_screenshot("screenshots/checkout.png")
     print("🎉 Checkout completed successfully")
