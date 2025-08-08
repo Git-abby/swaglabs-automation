@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 @pytest.fixture()
 def driver():
     options = Options()
-    # options.add_argument("--headless")  # Uncomment for headless mode
+    options.add_argument("--headless")
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     yield driver
