@@ -11,7 +11,12 @@ from selenium.webdriver.support import expected_conditions as EC
 @pytest.fixture()
 def driver():
     options = Options()
-    options.add_argument("--headless")
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False
+    }
+    options.add_experimental_option("prefs", prefs)
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
     yield driver
