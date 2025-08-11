@@ -8,6 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 @pytest.fixture()
 def driver():
     options = Options()
+    options.add_argument("--headless=new")
     prefs = {
         "credentials_enable_service": False,
         "profile.password_manager_enabled": False,
